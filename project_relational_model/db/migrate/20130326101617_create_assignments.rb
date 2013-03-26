@@ -3,7 +3,7 @@ class CreateAssignments < ActiveRecord::Migration
     create_table :assignments do |t|
       t.integer :programmer_id
       t.integer :project_id
-      t.number :hours_worked
+      t.decimal :hours_worked
       t.text :task
 
       t.timestamps

@@ -4,7 +4,7 @@ class CreateProgrammers < ActiveRecord::Migration
       t.string :firstname
       t.string :lastname
       t.string :email
-      t.number :hourly_rate
+      t.decimal :hourly_rate
 
       t.timestamps
     end
