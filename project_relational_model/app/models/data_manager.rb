@@ -46,6 +46,14 @@ class DataManager
   end
 
   def self.add_programmers_to_projects
+    Project.all.each do |project|
+      assignment = Assignment.new
+      assignment.project = project
+      assignment.programmer = Programmer.first(:offset => rand(Programmer.count -1))
+      assignment.task = "Description of the assignment"
+      assignment.hours_worked = 0
+      assignment.save!
+    end
   end
 
 
@@ -63,5 +71,6 @@ class DataManager
   end
 
   def self.delete_programmers_from_projects
+    Assignment.destroy_all
   end
 end
