@@ -34,3 +34,294 @@ Migrating to CreateProgrammingLanguages (20130326102243)
   [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326102243')[0m
   [1m[35m (181.4ms)[0m  commit transaction
   [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+SQLite3::SQLException: no such table: programmers_programming_languages: SELECT "programming_languages".* FROM "programming_languages" INNER JOIN "programmers_programming_languages" ON "programming_languages"."id" = "programmers_programming_languages"."programming_language_id" WHERE "programmers_programming_languages"."programmer_id" = 1
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (1.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateProgrammers (20130326101223)
+Migrating to CreateProjects (20130326101442)
+Migrating to CreateAssignments (20130326101617)
+Migrating to CreateProgrammingLanguages (20130326102243)
+Migrating to CreateProgrammersProgammingLanguagesTable (20130326134911)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "programmers_programming_languages" ("programmer_id" integer NOT NULL, "programming_language_id" integer NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (1.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateProgrammers (20130326101223)
+Migrating to CreateProjects (20130326101442)
+Migrating to CreateAssignments (20130326101617)
+Migrating to CreateProgrammingLanguages (20130326102243)
+Migrating to CreateProgrammersProgammingLanguagesTable (20130326134911)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "programmers_programming_languages" ("programmer_id" integer NOT NULL, "programming_language_id" integer NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+Connecting to database specified by database.yml
+  [1m[36m (1.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateProgrammers (20130326101223)
+Migrating to CreateProjects (20130326101442)
+Migrating to CreateAssignments (20130326101617)
+Migrating to CreateProgrammingLanguages (20130326102243)
+Migrating to CreateProgrammersProgammingLanguagesTable (20130326134911)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "programmers_programming_languages" ("programmer_id" integer NOT NULL, "programming_language_id" integer NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "index_progr_lang_on_programmer_id_and_programmer_language_id" ON "progr_lang" ("programmer_id", "programmer_language_id")[0m
+SQLite3::SQLException: no such table: main.progr_lang: CREATE UNIQUE INDEX "index_progr_lang_on_programmer_id_and_programmer_language_id" ON "progr_lang" ("programmer_id", "programmer_language_id")
+  [1m[35m (0.2ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateProgrammers (20130326101223)
+Migrating to CreateProjects (20130326101442)
+Migrating to CreateAssignments (20130326101617)
+Migrating to CreateProgrammingLanguages (20130326102243)
+Migrating to CreateProgrammersProgammingLanguagesTable (20130326134911)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "programmers_programming_languages" ("programmer_id" integer NOT NULL, "programming_language_id" integer NOT NULL) 
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "programmers_languages" ON "programmers_programming_languages" ("programmer_id", "programmer_language_id")[0m
+SQLite3::SQLException: table programmers_programming_languages has no column named programmer_language_id: CREATE UNIQUE INDEX "programmers_languages" ON "programmers_programming_languages" ("programmer_id", "programmer_language_id")
+  [1m[35m (0.2ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateProgrammingLanguages (20130326102243)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  DROP TABLE "programming_languages"
+  [1m[36m (0.2ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326102243'[0m
+  [1m[35m (209.7ms)[0m  commit transaction
+Migrating to CreateAssignments (20130326101617)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "assignments"
+  [1m[36m (0.2ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326101617'[0m
+  [1m[35m (187.5ms)[0m  commit transaction
+Migrating to CreateProjects (20130326101442)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "projects"
+  [1m[36m (0.2ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326101442'[0m
+  [1m[35m (198.8ms)[0m  commit transaction
+Migrating to CreateProgrammers (20130326101223)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "programmers"
+  [1m[36m (0.2ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326101223'[0m
+  [1m[35m (199.0ms)[0m  commit transaction
+  [1m[36m (0.4ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.6ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateProgrammers (20130326101223)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "programmers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "lastname" varchar(255), "email" varchar(255), "hourly_rate" decimal, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326101223')[0m
+  [1m[35m (189.0ms)[0m  commit transaction
+Migrating to CreateProjects (20130326101442)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" varchar(255), "due_date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326101442')[0m
+  [1m[35m (176.0ms)[0m  commit transaction
+Migrating to CreateAssignments (20130326101617)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "programmer_id" integer, "project_id" integer, "hours_worked" decimal, "task" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326101617')[0m
+  [1m[35m (184.8ms)[0m  commit transaction
+Migrating to CreateProgrammingLanguages (20130326102243)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "programming_languages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326102243')[0m
+  [1m[35m (184.2ms)[0m  commit transaction
+Migrating to CreateProgrammersProgammingLanguagesTable (20130326134911)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "programmers_programming_languages" ("programmer_id" integer NOT NULL, "programming_language_id" integer NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mCREATE UNIQUE INDEX "programmers_languages" ON "programmers_programming_languages" ("programmer_id", "programmer_language_id")[0m
+SQLite3::SQLException: table programmers_programming_languages has no column named programmer_language_id: CREATE UNIQUE INDEX "programmers_languages" ON "programmers_programming_languages" ("programmer_id", "programmer_language_id")
+  [1m[35m (0.2ms)[0m  rollback transaction
+Connecting to database specified by database.yml
+  [1m[36m (1.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateProgrammingLanguages (20130326102243)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "programming_languages"
+  [1m[36m (0.2ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326102243'[0m
+  [1m[35m (193.7ms)[0m  commit transaction
+Migrating to CreateAssignments (20130326101617)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "assignments"
+  [1m[36m (0.2ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326101617'[0m
+  [1m[35m (198.8ms)[0m  commit transaction
+Migrating to CreateProjects (20130326101442)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  DROP TABLE "projects"
+  [1m[36m (0.2ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326101442'[0m
+  [1m[35m (175.8ms)[0m  commit transaction
+Migrating to CreateProgrammers (20130326101223)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  DROP TABLE "programmers"
+  [1m[36m (0.2ms)[0m  [1mDELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326101223'[0m
+  [1m[35m (176.7ms)[0m  commit transaction
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Connecting to database specified by database.yml
+  [1m[36m (1.7ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateProgrammers (20130326101223)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "programmers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "lastname" varchar(255), "email" varchar(255), "hourly_rate" decimal, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326101223')[0m
+  [1m[35m (170.9ms)[0m  commit transaction
+Migrating to CreateProjects (20130326101442)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" varchar(255), "due_date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326101442')[0m
+  [1m[35m (176.3ms)[0m  commit transaction
+Migrating to CreateAssignments (20130326101617)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "programmer_id" integer, "project_id" integer, "hours_worked" decimal, "task" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326101617')[0m
+  [1m[35m (163.7ms)[0m  commit transaction
+Migrating to CreateProgrammingLanguages (20130326102243)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "programming_languages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326102243')[0m
+  [1m[35m (187.1ms)[0m  commit transaction
+Migrating to CreateProgrammersProgammingLanguagesTable (20130326134911)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "programmers_programming_languages" ("programmer_id" integer NOT NULL, "programming_language_id" integer NOT NULL) 
+  [1m[36m (0.4ms)[0m  [1mCREATE UNIQUE INDEX "programmers_languages" ON "programmers_programming_languages" ("programmer_id", "programming_language_id")[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130326134911')
+  [1m[36m (186.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (1.6ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.2ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateProgrammersProgammingLanguagesTable (20130326134911)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  DROP INDEX "programmers_languages"
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "programmers_programming_languages"[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326134911'
+  [1m[36m (195.9ms)[0m  [1mcommit transaction[0m
+Migrating to CreateProgrammingLanguages (20130326102243)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "programming_languages"[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326102243'
+  [1m[36m (190.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAssignments (20130326101617)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mDROP TABLE "assignments"[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326101617'
+  [1m[36m (165.2ms)[0m  [1mcommit transaction[0m
+Migrating to CreateProjects (20130326101442)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mDROP TABLE "projects"[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326101442'
+  [1m[36m (211.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateProgrammers (20130326101223)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mDROP TABLE "programmers"[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326101223'
+  [1m[36m (176.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+  [1m[36m (0.2ms)[0m  [1mselect sqlite_version(*)[0m
+  [1m[35m (153.6ms)[0m  CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) 
+  [1m[36m (134.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35m (2.0ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Migrating to CreateProgrammers (20130326101223)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.7ms)[0m  CREATE TABLE "programmers" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "firstname" varchar(255), "lastname" varchar(255), "email" varchar(255), "hourly_rate" decimal, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326101223')[0m
+  [1m[35m (148.7ms)[0m  commit transaction
+Migrating to CreateProjects (20130326101442)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "projects" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255), "description" varchar(255), "due_date" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326101442')[0m
+  [1m[35m (152.4ms)[0m  commit transaction
+Migrating to CreateAssignments (20130326101617)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "assignments" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "programmer_id" integer, "project_id" integer, "hours_worked" decimal, "task" text, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326101617')[0m
+  [1m[35m (177.2ms)[0m  commit transaction
+Migrating to CreateProgrammingLanguages (20130326102243)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  CREATE TABLE "programming_languages" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "type" varchar(255), "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.2ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ('20130326102243')[0m
+  [1m[35m (162.0ms)[0m  commit transaction
+Migrating to CreateProgrammersProgammingLanguagesTable (20130326134911)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  CREATE TABLE "programmers_programming_languages" ("programmer_id" integer NOT NULL, "programming_language_id" integer NOT NULL) 
+  [1m[36m (0.4ms)[0m  [1mCREATE UNIQUE INDEX "programmers_languages" ON "programmers_programming_languages" ("programmer_id", "programming_language_id")[0m
+  [1m[35m (0.2ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20130326134911')
+  [1m[36m (164.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+  [1m[36m (1.6ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+  [1m[36m (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations" [0m
+Migrating to CreateProgrammersProgammingLanguagesTable (20130326134911)
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.6ms)[0m  DROP INDEX "programmers_languages"
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "programmers_programming_languages"[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326134911'
+  [1m[36m (186.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateProgrammingLanguages (20130326102243)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mDROP TABLE "programming_languages"[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326102243'
+  [1m[36m (199.0ms)[0m  [1mcommit transaction[0m
+Migrating to CreateAssignments (20130326101617)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mDROP TABLE "assignments"[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326101617'
+  [1m[36m (166.4ms)[0m  [1mcommit transaction[0m
+Migrating to CreateProjects (20130326101442)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.6ms)[0m  [1mDROP TABLE "projects"[0m
+  [1m[35m (0.3ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326101442'
+  [1m[36m (197.7ms)[0m  [1mcommit transaction[0m
+Migrating to CreateProgrammers (20130326101223)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.5ms)[0m  [1mDROP TABLE "programmers"[0m
+  [1m[35m (0.2ms)[0m  DELETE FROM "schema_migrations" WHERE "schema_migrations"."version" = '20130326101223'
+  [1m[36m (186.7ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations" 
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+  [1m[36m (120.3ms)[0m  [1mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [1m[35m (212.5ms)[0m  CREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)
+  [1m[36m (2.3ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Migrating to CreateProgrammers (20130326101223)
+  [1m[35m (148.8ms)[0m  CREATE TABLE `programmers` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `firstname` varchar(255), `lastname` varchar(255), `email` varchar(255), `hourly_rate` decimal, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (54.9ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130326101223')[0m
+Migrating to CreateProjects (20130326101442)
+  [1m[35m (134.6ms)[0m  CREATE TABLE `projects` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `title` varchar(255), `description` varchar(255), `due_date` datetime, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (32.8ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130326101442')[0m
+Migrating to CreateAssignments (20130326101617)
+  [1m[35m (132.9ms)[0m  CREATE TABLE `assignments` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `programmer_id` int(11), `project_id` int(11), `hours_worked` decimal, `task` text, `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (43.9ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130326101617')[0m
+Migrating to CreateProgrammingLanguages (20130326102243)
+  [1m[35m (390.0ms)[0m  CREATE TABLE `programming_languages` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `type` varchar(255), `created_at` datetime NOT NULL, `updated_at` datetime NOT NULL) ENGINE=InnoDB
+  [1m[36m (43.8ms)[0m  [1mINSERT INTO `schema_migrations` (`version`) VALUES ('20130326102243')[0m
+Migrating to CreateProgrammersProgammingLanguagesTable (20130326134911)
+  [1m[35m (144.5ms)[0m  CREATE TABLE `programmers_programming_languages` (`programmer_id` int(11) NOT NULL, `programming_language_id` int(11) NOT NULL) ENGINE=InnoDB
+  [1m[36m (227.0ms)[0m  [1mCREATE UNIQUE INDEX `programmers_languages` ON `programmers_programming_languages` (`programmer_id`, `programming_language_id`)[0m
+  [1m[35m (44.3ms)[0m  INSERT INTO `schema_migrations` (`version`) VALUES ('20130326134911')
+  [1m[36m (0.3ms)[0m  [1mSELECT `schema_migrations`.`version` FROM `schema_migrations` [0m
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Mysql2::Error: Duplicate entry '2-1' for key 'programmers_languages': INSERT INTO `programmers_programming_languages` (`programmer_id`, `programming_language_id`) VALUES (2, 1)
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
