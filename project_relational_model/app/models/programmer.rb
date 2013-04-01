@@ -1,11 +1,24 @@
-class Programmer < ActiveRecord::Base
+class Programmer < Ohm::Model
 
-  has_and_belongs_to_many :programming_languages
-  has_many :assignments
-  has_many :projects, :through => :assignments
+  attribute :email
+  attribute :firstname
+  attribute :lastname
+  attribute :hourly_rate
 
-  validates :email, :firstname, :lastname, :presence => true
-  validates :email, :format => { :with => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i}
+  unique :email
 
-  attr_accessible :email, :firstname, :hourly_rate, :lastname
+  index :programming_languages
+  collection :assignments, :Assignment
+  #active-record-like:
+  #has_and_belongs_to_many :programming_languages
+  #has_many :assignments
+  #has_many :projects, :through => :assignments
+
+  def validate
+    assert_present :email
+    assert_present :firstname
+    assert_present :lastname
+    assert_email :email
+    assert_numeric :hourly_rate
+  end
 end

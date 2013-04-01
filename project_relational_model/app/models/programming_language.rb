@@ -1,6 +1,8 @@
 class ProgrammingLanguage < ActiveRecord::Base
+  attribute :name
+  attribute :type
 
-  has_and_belongs_to_many :programmers
-
-  attr_accessible :name, :type
+  def validate
+    assert_present :name
+  end
 end
