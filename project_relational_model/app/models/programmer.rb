@@ -7,7 +7,7 @@ class Programmer < Ohm::Model
 
   unique :email
 
-  collection :programming_languages, :Programming_language
+  collection :programming_languages, :ProgrammingLanguage
   collection :assignments, :Assignment
   #active-record-like:
   #has_and_belongs_to_many :programming_languages
