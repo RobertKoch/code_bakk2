@@ -21,4 +21,14 @@ class Programmer < Ohm::Model
     assert_email :email
     assert_numeric :hourly_rate
   end
+
+  def add_programming_language(language)
+    self.programming_languages.add language
+    language.programmers.add self
+  end
+
+  def remove_programming_language(language)
+    self.programming_languages.delete language
+    language.programmers.delete self
+  end
 end
