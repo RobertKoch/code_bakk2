@@ -6,6 +6,7 @@ class Programmer < ActiveRecord::Base
 
   validates :email, :firstname, :lastname, :presence => true
   validates :email, :format => { :with => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i}
+  validates_uniqueness_of :email
 
   attr_accessible :email, :firstname, :hourly_rate, :lastname
 end

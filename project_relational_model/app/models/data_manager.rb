@@ -3,18 +3,14 @@ class DataManager
 
   #CREATE ENTRIES
   def self.create_programming_languages
-    #inactive Example for benchmarking
-    #time = Benchmark.realtime do
-      ["Ruby","Perl","PHP","JavaScript","C#","C++","Java","Python","HTML/CSS","ActionScript","Objective-C","SQL"].each do |l|
-        p = ProgrammingLanguage.new(:name => l)
-        p.save!
-      end
-    #end
-    #puts "Time elapsed #{time*1000} milliseconds"
+    ["Ruby","Perl","PHP","JavaScript","C#","C++","Java","Python","HTML/CSS","ActionScript","Objective-C","SQL"].each do |l|
+      p = ProgrammingLanguage.new(:name => l)
+      p.save!
+    end
   end
 
-  def self.create_programmers
-    (1..100).each do |i|
+  def self.create_programmers(max)
+    (1..max+1).each do |i|
       p = Programmer.new(
         :firstname => "John",
         :lastname => "Number#{i}",
@@ -25,8 +21,8 @@ class DataManager
     end
   end
 
-  def self.create_projects
-    (1..100).each do |i|
+  def self.create_projects(max)
+    (1..max+1).each do |i|
       p = Project.new(
         :title => "Project ##{i}",
         :description => "Project ##{i}",
@@ -36,17 +32,17 @@ class DataManager
     end
   end
 
-  def self.add_languages_to_programmers
-    max = ProgrammingLanguage.count - 1
+  def self.add_languages_to_programmers(max)
+    lang_max = ProgrammingLanguage.count - 1
     all_languages = ProgrammingLanguage.all
-    Programmer.all.each do |p|
-      languages = [all_languages[0], all_languages[rand(1 .. max)]]
+    Programmer.all(:limit => max).each do |p|
+      languages = [all_languages[0], all_languages[rand(1 .. lang_max)]]
       p.programming_languages << languages
     end
   end
 
-  def self.add_programmers_to_projects
-    Project.all.each do |project|
+  def self.add_programmers_to_projects(max)
+    Project.all(:limit => max).each do |project|
       assignment = Assignment.new
       assignment.project = project
       assignment.programmer = Programmer.first(:offset => rand(Programmer.count -1))
