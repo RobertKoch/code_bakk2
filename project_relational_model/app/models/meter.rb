@@ -6,7 +6,7 @@ class Meter
     puts "Time elapsed #{time*1000} milliseconds"
   end
 
-  def self.add_languages_to_programmer(max)
+  def self.add_languages_to_programmers(max)
     time = Benchmark.realtime do
       DataManager.add_languages_to_programmers max
     end
@@ -29,7 +29,8 @@ class Meter
 
   def self.calculate_top10_languages
     time = Benchmark.realtime do
-      #do something
+      ProgrammingLanguage.all.each do |pl|
+      end
     end
     puts "Time elapsed #{time*1000} milliseconds"
   end

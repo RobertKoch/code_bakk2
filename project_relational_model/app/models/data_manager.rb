@@ -33,19 +33,20 @@ class DataManager
   end
 
   def self.add_languages_to_programmers(max)
-    lang_max = ProgrammingLanguage.count - 1
     all_languages = ProgrammingLanguage.all
-    Programmer.all(:limit => max).each do |p|
-      languages = [all_languages[0], all_languages[rand(1 .. lang_max)]]
-      p.programming_languages << languages
+    lang_max = all_languages.count
+    Programmer.all.sort(:limit => [0, max]).each do |p|
+      p.add_programming_language all_languages[1]
+      p.add_programming_language all_languages[rand(2 .. lang_max)]
     end
   end
 
   def self.add_programmers_to_projects(max)
-    Project.all(:limit => max).each do |project|
+    number_of_programmers = Programmer.all.count
+    Project.all.sort(:limit => [0, max]).each do |project|
       assignment = Assignment.new
       assignment.project = project
-      assignment.programmer = Programmer.first(:offset => rand(Programmer.count -1))
+      assignment.programmer = Programmer[rand(number_of_programmers -1)]
       assignment.task = "Description of the assignment"
       assignment.hours_worked = 0
       assignment.save!
