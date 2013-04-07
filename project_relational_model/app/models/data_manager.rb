@@ -33,8 +33,8 @@ class DataManager
   end
 
   def self.add_languages_to_programmers(max)
-    lang_max = ProgrammingLanguage.count - 1
     all_languages = ProgrammingLanguage.all
+    lang_max = all_languages.count - 1
     Programmer.all(:limit => max).each do |p|
       languages = [all_languages[0], all_languages[rand(1 .. lang_max)]]
       p.programming_languages << languages
@@ -52,6 +52,18 @@ class DataManager
     end
   end
 
+  def self.get_top10_languages
+    top10 = ProgrammingLanguage.joins(:programmers).group("programming_languages.id").order("count(programmers.id) DESC").limit(10)
+    top10.each do |lang|
+      p lang.name+": "+lang.programmers.count.to_s+" Programmers"
+    end
+  end
+
+  def self.read_programmers(max)
+    500.times do
+      Programmer.limit(max)
+    end
+  end
 
   #DELETE ENTRIES
   def self.delete_all_programming_languages
