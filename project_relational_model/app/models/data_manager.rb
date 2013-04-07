@@ -53,6 +53,11 @@ class DataManager
     end
   end
 
+  def self.read_programmers(max)
+    500.times do
+      Programmer.all.sort(:limit => [0, max])
+    end
+  end
 
   #DELETE ENTRIES
   def self.delete_all_programming_languages
