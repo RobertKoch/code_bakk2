@@ -59,6 +59,13 @@ class DataManager
     end
   end
 
+  def self.get_top10_languages
+    top10 = ProgrammingLanguage.all.sort(:limit => [0,10]).to_a.sort_by {|p|[-p.programmers.count, p.name]}
+    top10.each do |lang|
+      p lang.name+": "+lang.programmers.count.to_s+" Programmers"
+    end
+  end
+
   #DELETE ENTRIES
   def self.delete_all_programming_languages
     ProgrammingLanguage.all.each do |p|

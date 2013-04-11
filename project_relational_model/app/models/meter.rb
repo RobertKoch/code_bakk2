@@ -36,8 +36,7 @@ class Meter
 
   def self.calculate_top10_languages
     time = Benchmark.realtime do
-      ProgrammingLanguage.all.each do |pl|
-      end
+      DataManager.get_top10_languages
     end
     puts "Time elapsed #{time*1000} milliseconds"
   end
