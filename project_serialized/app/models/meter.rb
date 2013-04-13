@@ -27,7 +27,7 @@ class Meter
     puts "Time elapsed #{time*1000} milliseconds"
   end
 
-  def self.calculate_top10_languages
+  def self.get_top10_languages
     time = Benchmark.realtime do
       DataManager.get_top10_languages
     end
