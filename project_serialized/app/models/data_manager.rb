@@ -60,7 +60,7 @@ class DataManager
       counts[f] = 0
     end
     
-    Programmer.limit(100).each do |p|
+    Programmer.all.each do |p|
       p.programming_languages.each do |lang|
         counts[lang[0]] += 1 if lang[1] == 1
       end
