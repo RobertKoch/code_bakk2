@@ -53,8 +53,12 @@ class DataManager
   end
 
   def self.get_top10_languages
-    top10 = ProgrammingLanguage.joins(:programmers).group("programming_languages.id").order("count(programmers.id) DESC").limit(10)
-    top10.each do |lang|
+    #MySQL version:
+    #top10 = ProgrammingLanguage.joins(:programmers).group("programming_languages.id").order("count(programmers.id) DESC").limit(10)
+    
+    #version for comparision with redis
+    top10 = ProgrammingLanguage.all.to_a.sort_by {|p| [-p.programmers.count, p.name]}
+    top10.take(10).each do |lang|
       p lang.name+": "+lang.programmers.count.to_s+" Programmers"
     end
   end
