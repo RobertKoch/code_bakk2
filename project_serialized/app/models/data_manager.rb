@@ -34,20 +34,12 @@ class DataManager
     end
   end
 
-  def self.add_languages_to_programmers(max)
-    all_languages = ProgrammingLanguage.all
-    lang_max = all_languages.count - 1
-    Programmer.all(:limit => max).each do |p|
-      languages = [all_languages[0], all_languages[rand(1 .. lang_max)]]
-      p.programming_languages << languages
-    end
-  end
-
   def self.add_programmers_to_projects(max)
-    Project.all(:limit => max).each do |project|
+    number_of_programmers = Programmer.all.count
+    Project.all.sort(:limit => [0, max]).each do |project|
       assignment = Assignment.new
       assignment.project = project
-      assignment.programmer = Programmer.first(:offset => rand(Programmer.count -1))
+      assignment.programmer = Programmer[rand(number_of_programmers -1)]
       assignment.task = "Description of the assignment"
       assignment.hours_worked = 0
       assignment.save!
@@ -60,8 +52,8 @@ class DataManager
       counts[f] = 0
     end
     
-    Programmer.limit(100).each do |p|
-      p.programming_languages.each do |lang|
+    Programmer.all.each do |p|
+      p.languages.each do |lang|
         counts[lang[0]] += 1 if lang[1] == 1
       end
     end
@@ -75,24 +67,26 @@ class DataManager
 
   def self.read_programmers(max)
     500.times do
-      Programmer.limit(max)
+      Programmer.all.sort(:limit => [0, max])
     end
   end
 
   #DELETE ENTRIES
-  def self.delete_all_programming_languages
-    ProgrammingLanguage.destroy_all
-  end
-
   def self.delete_all_projects
-    Project.destroy_all
+    Project.all.each do |p|
+      p.delete
+    end
   end
 
   def self.delete_all_programmers
-    Programmer.destroy_all
+    Programmer.all.each do |p|
+      p.delete
+    end
   end
 
   def self.delete_programmers_from_projects
-    Assignment.destroy_all
+    Assignment.all.each do |as|
+      as.delete
+    end
   end
 end

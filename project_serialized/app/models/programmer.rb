@@ -1,17 +1,28 @@
-class Programmer < ActiveRecord::Base
+class Programmer < Ohm::Model
 
   PROGRAMMING_LANGUAGES = "Ruby,Perl,PHP,JavaScript,C#,C++,Java,Python,HTML/CSS,ActionScript,Objective-C,SQL"
 
-  has_many :assignments
-  has_many :projects, :through => :assignments
+  attribute :email
+  attribute :firstname
+  attribute :lastname
+  attribute :hourly_rate
+  attribute :programming_languages
 
-  attr_accessible :email, :firstname, :hourly_rate, :lastname, :programming_languages
-  
-  serialize :programming_languages, JSON
+  unique :email
 
-  validates :email, :firstname, :lastname, :presence => true
-  validates :email, :format => { :with => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i}
-  validates_uniqueness_of :email
+  collection :assignments, :Assignment
+
+  def validate
+    assert_present :email
+    assert_present :firstname
+    assert_present :lastname
+    assert_email :email
+    assert_numeric :hourly_rate
+  end
+
+  def languages
+    eval self.programming_languages
+  end
 
   def self.possible_languages
     PROGRAMMING_LANGUAGES.split ','

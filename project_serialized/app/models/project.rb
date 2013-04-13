@@ -1,9 +1,15 @@
-class Project < ActiveRecord::Base
+class Project < Ohm::Model
+  attribute :description
+  attribute :due_date
+  attribute :title
 
-  has_many :assignments
-  has_many :programmers, :through => :assignments
+  collection :assignments, :Assignment
+  #active-record-like:
+  #has_many :assignments
+  #has_many :programmers, :through => :assignments
 
-  validates :title, :due_date, :presence => true
-
-  attr_accessible :description, :due_date, :title
+  def validate
+      assert_present :title
+      assert_present :due_date
+  end
 end
