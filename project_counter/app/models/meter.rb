@@ -6,13 +6,6 @@ class Meter
     puts "Time elapsed #{time*1000} milliseconds"
   end
 
-  def self.add_languages_to_programmers(max)
-    time = Benchmark.realtime do
-      DataManager.add_languages_to_programmers max
-    end
-    puts "Time elapsed #{time*1000} milliseconds"
-  end
-
   def self.add_programmers_to_projects(max)
     time = Benchmark.realtime do
       DataManager.add_programmers_to_projects max

@@ -1,35 +1,44 @@
-class Programmer < ActiveRecord::Base
+class Programmer < Ohm::Model
+  include Ohm::DataTypes
 
   PROGRAMMING_LANGUAGES = "Ruby,Perl,PHP,JavaScript,C#,C++,Java,Python,HTML/CSS,ActionScript,Objective-C,SQL"
 
-  has_many :assignments
-  has_many :projects, :through => :assignments
+  attribute :email
+  attribute :firstname
+  attribute :lastname
+  attribute :hourly_rate
+  attribute :programming_languages, Type::Hash
 
-  attr_accessible :email, :firstname, :hourly_rate, :lastname, :programming_languages
-  
-  serialize :programming_languages, JSON
+  unique :email
 
-  validates :email, :firstname, :lastname, :presence => true
-  validates :email, :format => { :with => /^([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})$/i}
-  validates_uniqueness_of :email
+  collection :assignments, :Assignment
 
-  after_save :increment_counter
-  after_destroy :decrement_counter
+  def validate
+    assert_present :email
+    assert_present :firstname
+    assert_present :lastname
+    assert_email :email
+    assert_numeric :hourly_rate
+  end
+
+  def languages
+    eval self.programming_languages
+  end
 
   def self.possible_languages
     PROGRAMMING_LANGUAGES.split ','
   end
 
-private
-  def increment_counter
+protected
+  def after_save
     self.programming_languages.each do |l|
-      $counter.increment_language(l[0]) if l[1] == 1
+      Counter.increment_language(l[0]) if l[1] == 1
     end
   end
 
-  def decrement_counter
+  def after_destroy
     self.programming_languages.each do |l|
-      $counter.decrement_language(l[0]) if l[1] == 1
+      CSSounter.decrement_language(l[0]) if l[1] == 1
     end
   end
 end

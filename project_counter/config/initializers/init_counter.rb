@@ -1,1 +1,0 @@
-$counter = Counter.create

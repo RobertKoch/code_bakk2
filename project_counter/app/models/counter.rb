@@ -1,32 +1,13 @@
-class Counter < ActiveRecord::Base
-  attr_accessible :programming_languages
-
-  serialize :programming_languages, JSON
-
-  after_initialize :set_programming_languages
-
-  def increment_language(language)
-    languages = self.programming_languages
-    languages[language] += 1
-    self.update_attribute :programming_languages, languages
+class Counter
+  def self.increment_language(language)
+    Ohm.redis.incr "count:"+language
   end
 
-  def decrement_language(language)
-    languages = self.programming_languages
-    languages[language] -= 1
-    self.update_attribute :programming_languages, languages
+  def self.decrement_language(language)
+    Ohm.redis.decr "count:"+language
   end
 
-  def get_language_count(language)
-    self.programming_languages[language]
-  end
-
-private
-  def set_programming_languages
-    language_hash = {}
-    Programmer.possible_languages.each do |l|
-      language_hash[l] = 0
-    end
-    self.programming_languages = language_hash
+  def self.get_language_count(language)
+    Ohm.redis.get("count:"+language).to_i
   end
 end

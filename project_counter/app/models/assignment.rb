@@ -1,9 +1,17 @@
-class Assignment < ActiveRecord::Base
+class Assignment < Ohm::Model
 
-  belongs_to :programmer
-  belongs_to :project
+  attribute :hours_worked
+  attribute :task
 
-  validates :programmer, :project, :presence => true
+  reference :programmer, :Programmer
+  reference :project, :Project
+  #active-record-like:
+  #belongs_to :programmer
+  #belongs_to :project
 
-  attr_accessible :hours_worked, :programmer_id, :project_id, :task
+  def validate
+    assert_present :programmer
+    assert_present :project
+    assert_numeric :hours_worked
+  end
 end
