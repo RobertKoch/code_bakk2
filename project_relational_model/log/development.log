@@ -325,3 +325,7 @@ Connecting to database specified by database.yml
 Mysql2::Error: Duplicate entry '2-1' for key 'programmers_languages': INSERT INTO `programmers_programming_languages` (`programmer_id`, `programming_language_id`) VALUES (2, 1)
 Connecting to database specified by database.yml
 Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
+Connecting to database specified by database.yml
