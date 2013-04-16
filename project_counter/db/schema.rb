@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130415161537) do
+ActiveRecord::Schema.define(:version => 20130416210245) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "programmer_id"
@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20130415161537) do
   end
 
   create_table "counters", :force => true do |t|
-    t.string   "programming_languages"
+    t.text     "programming_languages"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
   end
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(:version => 20130415161537) do
     t.string   "firstname"
     t.string   "lastname"
     t.string   "email"
-    t.string   "programming_languages"
+    t.text     "programming_languages"
     t.decimal  "hourly_rate",           :precision => 10, :scale => 0
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
