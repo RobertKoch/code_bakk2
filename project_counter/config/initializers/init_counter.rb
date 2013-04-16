@@ -1,1 +1,1 @@
-$counter = Counter.create
+$counter = Counter.first ? Counter.first : Counter.create

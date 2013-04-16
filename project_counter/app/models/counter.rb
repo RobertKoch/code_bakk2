@@ -23,10 +23,12 @@ class Counter < ActiveRecord::Base
 
 private
   def set_programming_languages
-    language_hash = {}
-    Programmer.possible_languages.each do |l|
-      language_hash[l] = 0
+    if self.programming_languages.nil?
+      language_hash = {}
+      Programmer.possible_languages.each do |l|
+        language_hash[l] = 0
+      end
+      self.programming_languages = language_hash
     end
-    self.programming_languages = language_hash
   end
 end
