@@ -59,6 +59,8 @@ GEM
       nest (~> 1.0)
       redis
       scrivener (~> 0.0.3)
+    ohm-contrib (1.2)
+      ohm (~> 1.2)
     polyglot (0.3.3)
     rack (1.4.5)
     rack-cache (1.2)
@@ -114,6 +116,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
   ohm
+  ohm-contrib
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)

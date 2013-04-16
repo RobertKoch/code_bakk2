@@ -1,4 +1,5 @@
 class Programmer < Ohm::Model
+  include Ohm::DataTypes
 
   PROGRAMMING_LANGUAGES = "Ruby,Perl,PHP,JavaScript,C#,C++,Java,Python,HTML/CSS,ActionScript,Objective-C,SQL"
 
@@ -6,7 +7,7 @@ class Programmer < Ohm::Model
   attribute :firstname
   attribute :lastname
   attribute :hourly_rate
-  attribute :programming_languages
+  attribute :programming_languages, Type::Hash
 
   unique :email
 
@@ -18,10 +19,6 @@ class Programmer < Ohm::Model
     assert_present :lastname
     assert_email :email
     assert_numeric :hourly_rate
-  end
-
-  def languages
-    eval self.programming_languages
   end
 
   def self.possible_languages
