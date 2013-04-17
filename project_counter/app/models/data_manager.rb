@@ -23,6 +23,10 @@ class DataManager
     language_hash
   end
 
+  def self.increment_counter
+    Counter.increment_language "Ruby"
+  end
+
   def self.create_projects(max)
     (1..max+1).each do |i|
       p = Project.new(
