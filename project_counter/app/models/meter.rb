@@ -40,4 +40,11 @@ class Meter
     end
     puts "Time elapsed #{time*1000} milliseconds"
   end
+
+  def self.increment_counter
+    time = Benchmark.realtime do
+      DataManager.increment_counter
+    end
+    puts "Time elapsed #{time*1000} milliseconds"
+  end
 end

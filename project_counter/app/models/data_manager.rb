@@ -61,6 +61,10 @@ class DataManager
     end
   end
 
+  def self.increment_counter
+    $counter.increment_language "Ruby"
+  end
+
   def self.read_programmers(max)
     500.times do
       Programmer.limit(max)
