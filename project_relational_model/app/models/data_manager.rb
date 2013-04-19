@@ -65,7 +65,7 @@ class DataManager
 
   def self.read_programmers(max)
     500.times do
-      Programmer.limit(max)
+      Programmer.limit(max).all
     end
   end
 
